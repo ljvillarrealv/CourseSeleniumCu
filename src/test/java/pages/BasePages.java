@@ -25,7 +25,7 @@ public class BasePages {
 
         BasePages.driver= driver;
     }
-
+    //Navegar
     public static void navigateTo (String url){
         driver.get(url);
     }
