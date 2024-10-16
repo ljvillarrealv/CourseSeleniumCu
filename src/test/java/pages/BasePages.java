@@ -1,12 +1,15 @@
 package pages;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -34,6 +37,10 @@ public class BasePages {
         //Inicializa la variable estática 'driver' con una instancia de ChromeDriver
         driver = new ChromeDriver();
     }
+
+    public static void closeDriver(){
+        driver.quit();
+    }
  
     /*
      * Este es el constructor de BasePage que acepta un objeto WebDriver como argumento.
@@ -52,8 +59,59 @@ public class BasePages {
         return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
     }
  
+    private WebElement FindId(String locator){
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.id(locator)));
+    }
+    private WebElement FindCcs(String locator){
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(locator)));
+    }
+
     public void clickElement(String locator){
         Find(locator).click();
+    }
+
+    public void clickElementById(String locator){
+        FindId(locator).click();
+    }
+    public void clickElementByCcs(String locator){
+        FindId(locator).click();
+    }
+
+    public void write(String locator, String KeysToSend){
+    Find(locator).clear();
+    Find(locator).sendKeys(KeysToSend);
+
+    }
+
+    public void selectFromDropdownByValue(String locator, String value){
+        Select dropdown = new Select(Find(locator));
+        dropdown.selectByValue(value);
+    }
+
+    public void selectFromDropdownByIndex(String locator, Integer index){
+        Select dropdown = new Select(Find(locator));
+        dropdown.selectByIndex(index);
+    }
+
+    public int dropdownSize (String locator){
+        Select dropdown = new Select(Find(locator));
+
+        List<WebElement> dropdownSize = dropdown.getOptions();
+        return dropdownSize.size();
+
+    }
+
+    public List<String> getDropDownValues (String locator){
+        Select dropdown = new Select(Find(locator));
+
+        List<WebElement> dropdownOptions = dropdown.getOptions();
+        List<String> values =new ArrayList<>();
+        for ( WebElement option : dropdownOptions) {
+            values.add(option.getText());            
+        }
+        return values;
+
+
     }
  
 }

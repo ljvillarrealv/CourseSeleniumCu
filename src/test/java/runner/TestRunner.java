@@ -1,9 +1,11 @@
 package runner;
  
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
  
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import pages.BasePages;
  
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources", // Directorio de nuestros archivos .feature
@@ -12,4 +14,9 @@ import io.cucumber.junit.CucumberOptions;
  
 public class TestRunner {
  
+        @AfterClass
+        public static void cleanDriver(){
+                BasePages.closeDriver();
+        }
+
 }
