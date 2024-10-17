@@ -42,6 +42,17 @@ jobs:
     - name: Install ChromeDriver
       run: sudo apt-get install -y chromium-chromedriver
 
+    - name: Set up ChromeDriver path
+      run: echo "CHROMEWEBDRIVER=$(which chromedriver)" >> $GITHUB_ENV
+
+    - name: Set DISPLAY environment variable
+      run: echo "DISPLAY=:99" >> $GITHUB_ENV
+
+    - name: Start Xvfb
+      run: |
+        sudo apt-get install -y xvfb
+        Xvfb :99 -screen 0 1024x768x24 &
+        
     - name: Run Tests with Gradle and Cucumber tag
       run: ./gradlew test -Dcucumber.options="--tags @Test"
 
