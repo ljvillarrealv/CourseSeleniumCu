@@ -36,6 +36,12 @@ jobs:
     - name: Give Gradlew permissions
       run: chmod +x ./gradlew
 
+    - name: Install Chrome
+      run: sudo apt-get install -y google-chrome-stable
+
+    - name: Install ChromeDriver
+      run: sudo apt-get install -y chromium-chromedriver
+
     - name: Build with Gradle
       run: ./gradlew build
 
