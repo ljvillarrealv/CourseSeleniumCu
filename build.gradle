@@ -43,6 +43,10 @@ dependencies {
     // https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
     testImplementation 'io.cucumber:cucumber-junit:7.20.0'
 
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.0.0'
+    testImplementation 'io.cucumber:cucumber-java:7.0.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.0.0'
+    testImplementation 'junit:junit:4.13.2'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
