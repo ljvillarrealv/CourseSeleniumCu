@@ -26,21 +26,21 @@ public class FreeRangeSteps {
         landingPage.clickOnSectionNavigationBar(section);
     }
  
-    @When("I select Elegir Plan")
+     @When("I select Elegir Plan")
     public void selectElegirPlan() {
         landingPage.clickOnElegirPlanButton();
     }
  
-    @And("select Introducción al Testing")
+    /*@And("select Introducción al Testing")
     public void navigateToIntro() {
         cursosPage.clickFundamentosDeTesting();
         fundamentosPage.clickIntroduccionAlTesting();
-     }
+     }*/
      
      @Then("Yo ouedo validar la options en la pagina de checkout")
      public void validateCheckoutPlans() {
         List<String> lista = registroPage.returnPlanDropdownValues();
-        List<String> listaEsperada = Arrays.asList("Academia: $16.99 / mes • 13 productos",
+        List<String> listaEsperada = Arrays.asList("El Dojo - Prácticas intensivas de Testing y Automation: $30 / mes • 9 productos","El Dojo - Prácticas intensivas de Testing y Automation: $240 / año • 9 productos","Academia: $16.99 / mes • 13 productos",
                 "Academia: $176 / año • 13 productos", "Free: Gratis • 3 productos");
  
         Assert.assertEquals(listaEsperada, lista);
